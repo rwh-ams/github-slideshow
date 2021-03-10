@@ -1,0 +1,134 @@
+<head>
+<script src="core/js/highcharts.js"></script>
+</head>
+
+
+<script type="text/javascript">
+var IATval=0;
+(function (H) {
+    H.seriesType('lineargauge', 'column', null, {
+        setVisible: function () {
+            H.seriesTypes.column.prototype.setVisible.apply(this, arguments);
+            if (this.markLine) {
+                this.markLine[this.visible ? 'show' : 'hide']();
+            }
+        },
+        drawPoints: function () {
+            // Draw the Column like always
+            H.seriesTypes.column.prototype.drawPoints.apply(this, arguments);
+
+            // Add a Marker
+            var series = this,
+                chart = this.chart,
+                inverted = chart.inverted,
+                xAxis = this.xAxis,
+                yAxis = this.yAxis,
+                point = this.points[0], // we know there is only 1 point
+                markLine = this.markLine,
+                ani = markLine ? 'animate' : 'attr';
+
+            // Hide column
+            point.graphic.hide();
+
+            if (!markLine) {
+                var path = inverted ? ['M', 0, 0, 'L', -5, -5, 'L', 5, -5, 'L', 0, 0, 'L', 0, 0 + xAxis.len] : ['M', 0, 0, 'L', -5, -5, 'L', -5, 5, 'L', 0, 0, 'L', xAxis.len, 0];
+                markLine = this.markLine = chart.renderer.path(path)
+                    .attr({
+                        'fill': series.color,
+                        'stroke': series.color,
+                        'stroke-width': 1
+                    }).add();
+            }
+            markLine[ani]({
+                translateX: inverted ? xAxis.left + yAxis.translate(point.y) : xAxis.left,
+                translateY: inverted ? xAxis.top : yAxis.top + yAxis.len -  yAxis.translate(point.y)
+            });
+        }
+    });
+}(Highcharts));
+
+Highcharts.chart('container', {
+    chart: {
+        type: 'lineargauge',
+        inverted: true,
+        height: 100,
+        backgroundColor:null,
+    },
+     tooltip: {
+            formatter: function() {
+                 return 'IAT Score: '+IATval;
+            }
+        },
+    title: {
+        text: 'Your IAT Score is ' +IATval
+    },
+    xAxis: {
+        lineColor: '#C0C0C0',
+        labels: {
+            enabled: false
+        },
+        tickLength: 0
+    },
+    yAxis: {
+        min: 1,
+        max: 10,
+		tickPositions: [1,3,5,7,10],
+        tickLength: 5,
+        tickWidth: 1,
+        tickColor: '#C0C0C0',
+        gridLineColor: '#C0C0C0',
+        gridLineWidth: 1,
+        minorTickInterval: 0.5,
+        minorTickWidth: 1,
+        minorTickLength: 5,
+        minorGridLineWidth: 0,
+
+        title: null,
+        labels: {
+            format: '{value}'
+        },
+         plotBands: [
+        {
+            from: 1,
+            to: 3,
+            color: 'rgba(191,191,191,0.5)'
+        },
+        
+       {
+            from: 3,
+            to: 5,
+            color: 'rgba(138,218,191,0.5)'
+        },
+         {
+            from: 5,
+            to: 7,
+            color: 'rgba(55,195,162,0.5)'
+        }, {
+            from: 7,
+            to: 10,
+            color: 'rgba(36,148,135,0.5)'
+        }]
+    },
+    legend: {
+        enabled: false
+    },
+
+    series: [{
+        data: [IATval],
+        color: '#000000',
+        dataLabels: {
+            enabled: true,
+            verticalAlign: 'bottom',
+            align: 'center',
+            format: '{point.y}',
+            color: '#000000'
+        }
+    }]
+
+});
+</script>
+
+<div id="test"></div>
+<div id="container" style="width:400px; height:300px;"></div>
+<div id="scorepreference"></div>
+<p><b>83</b> people have completed this test so far and the average score was <b>6.03</b>.</p>

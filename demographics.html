@@ -1,0 +1,97 @@
+<head>
+<link rel="stylesheet" href="core/css/main.css">
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<h1>Participant Consent and Demographic Information Form</h1>
+<p><b>Project Title:</b> Achieving Urban Flood Resilience in an Uncertain Future</p>
+<p><b>Researchers' names:</b> Emily O’Donnell, Andrea Snelling and Jessica Lamond</p>
+
+<div class="container">
+<div class="table">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Statement</th>
+        <th>Yes</th>
+        <th>No</th>
+      </tr>
+    </thead>
+
+    <tbody>
+    <tr>
+    	<td>I have read the Participant Information Sheet and the nature and purpose of the research project has been explained to me. I understand and agree to take part.</td>
+    	<td><input name="statement1" type="radio" value="Yes"/></td>
+    	<td><input name="statement1" type="radio" value="No"/></td>
+    </tr>
+     <tr>
+    	<td>I understand the purpose of the research project and my involvement in it.</td>
+    	<td><input name="statement2" type="radio" value="Yes"/></td>
+    	<td><input name="statement2" type="radio" value="No"/></td>
+    </tr>
+     <tr>
+    	<td>I understand that I may withdraw from the research project within two weeks of completing the test.</td>
+    	<td><input id="statement3" name="statement3" type="radio" value="Yes"/></td>
+    	<td><input id="statement3" name="statement3" type="radio" value="No"/></td>
+    </tr>
+     <tr>
+    	<td>I understand that while information gained during the study may be published, I will not be identifiable as my identifying information will be coded.</td>
+    	<td><input id="statement4" name="statement4" type="radio" value="Yes"/></td>
+    	<td><input id="statement4" name="statement4" type="radio" value="No"/></td>
+    </tr>
+     <tr>
+    	<td>I understand that data will be stored securely until it is no longer needed for the study and then destroyed. </td>
+    	<td><input id="statement5" name="statement5" type="radio" value="Yes"/></td>
+    	<td><input id="statement5" name="statement5" type="radio" value="No"/></td>
+    </tr>
+     <tr>
+    	<td>I understand that I may contact the researchers if I require further information about the research, and that I may contact the School of Geography Ethics Officer (Giles Foody, <a href="mailto:giles.foody@nottingham.ac.uk">giles.foody@nottingham.ac.uk</a>), if I wish to make a complaint relating to my involvement in the research.</td>
+    	<td><input id="statement6" name="statement6" type="radio" value="Yes"/></td>
+    	<td><input id="statement6" name="statement6" type="radio" value="No"/></td>
+    </tr>
+    <tr>
+     <td>I confirm that I am over 18 years of age. </td>
+     <td><input id="statement7" name="statement7" type="radio" value="Yes"/></td>
+     <td><input id="statement7" name="statement7" type="radio" value="No"/></td>
+   </tr>
+    </tbody>
+    </table>
+    <br>
+	<p><b>You are required to tick a box in each section before moving on with the test. If you do not want to provide your location or views on Rainwater harvesting please state N/A.</b></p>
+    <table class="table table-hover">
+
+
+
+    <tbody>
+    <tr>
+    <td><b>Do you currently use a rainwater harvesting system in your property?</b></td>
+    <td><input id="Rainwater system" name="Rainwater system" type="radio" value="Yes"/></td>
+    <td><input id="Rainwater system" name="Rainwater system" type="radio" value="No"/></td>
+    </tr>
+    <tr>
+    <td><b>Do you live in a flat or a house?</b></td>
+    <td><input id="Property" name="Property" type="radio" value="flat"/>flat</td>
+    <td><input id="Property" name="Property" type="radio" value="House"/>House</td>
+
+    </tr>
+	<tr>
+	<td><b>Location (e.g. city or town)</b></td>
+    <td><input id="location" name="location" type="text"/></td>
+
+	</tr>
+    </tbody>
+    </table>
+	<table class="table table-hover">
+	<tbody>
+	<tr>
+	<td><b>What are your views on Rainwater harvesting?</b></td>
+    <td><textarea id="opinion" name="opinion" rows="6" cols="50"></textarea></td>
+
+	</tr>
+    </tbody>
+    </table>
+    </div>
+    </div>
+
+<input type="submit" value="Continue"  onclick='loadInstructions("agree");'>

@@ -1,0 +1,209 @@
+<head>
+
+
+
+   <link rel="stylesheet" href="core/css/style.css">
+	<link rel="stylesheet" href="core/css/gridsmall.css">
+
+</head>
+
+
+
+<h1>Feeling thermometers </h1>
+
+<body>
+  <div id="respid"></div>
+   <br>
+ <br>
+  <div id="gallery">
+        <div id="pic_insert"></div>
+
+ </div>
+ <br>
+ <div class="clearfix"></div>
+  <div class="rangeslider-wrap">
+  <div class='message'>
+  <i>We would like you to indicate on this scale how you feel in general about using this source of water for non-drinking purposes</i>
+  </div>
+
+  <input id="range-control1" type="range" min="0" max="100" step="1" value="0" labels="0, 20, 40, 60, 80, 100">
+
+  <br><br>
+  <div class='message'>
+  <i>We would like you to indicate on this scale how you feel on environmental grounds about using this source of water for non drinking purposes?</i>
+  </div>
+  <input id="range-control2" type="range" min="0" max="100" step="1" value="0" labels="0, 20, 40, 60, 80, 100">
+   <br><br>
+   <div class='message'>
+  <i>We would like you to indicate on this scale how you feel on the basis of cost about using this source of water for non drinking purposes?</i>
+  </div>
+  <input id="range-control3" type="range" min="0" max="100" step="1" value="0" labels="0, 20, 40, 60, 80, 100">
+
+
+</div>
+<div class="button">
+<input type="submit" id="clickbutton" value="Continue" onclick='loadInstructions("likertscalesuds");'>
+</div>
+  <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+<script src='//unpkg.com/fg-loadcss@1.3.1/src/loadCSS.js'></script>
+<script src='//unpkg.com/fg-loadjs@1.0.0'></script>
+
+
+    <script>
+	var $ruler = $('<div class="rangeslider__ruler" />');
+	var $ruler1 = $('<div class="rangeslider__ruler" />');
+	var $ruler2 = $('<div class="rangeslider__ruler" />');
+	var $ruler3 = $('<div class="rangeslider__ruler" />');
+ window.setTimeout(() => {
+  loadJS('https://rawgit.com/andreruffert/rangeslider.js/develop/dist/rangeslider.min.js', () => {
+  $('#range-control1').rangeslider({
+  // Feature detection the default is `true`.
+    // Set this to `false` if you want to use
+    // the polyfill also in Browsers which support
+    // the native <input type="range"> element.
+    polyfill: false,
+
+    // Default CSS classes
+    rangeClass: 'rangeslider',
+    disabledClass: 'rangeslider--disabled',
+    horizontalClass: 'rangeslider--horizontal',
+    fillClass: 'rangeslider__fill',
+    handleClass: 'rangeslider__handle',
+
+    // Callback function
+    onInit: function() {
+      $rangeEl = this.$range;
+
+      // add value label to handle
+      var $handle = $rangeEl.find('.rangeslider__handle');
+      var handleValue = '<div class="rangeslider__handle__value">' + this.value + '</div>';
+      $handle.append(handleValue);
+
+      // get range index labels
+      var rangeLabels = this.$element.attr('labels');
+      rangeLabels = rangeLabels.split(', ');
+
+      // add labels
+      $rangeEl.append('<div class="rangeslider__labels"></div>');
+      $(rangeLabels).each(function(index, value) {
+        $rangeEl.find('.rangeslider__labels').append('<span class="rangeslider__labels__label">' + value +  '</span>');
+      })
+	  $ruler[0].innerHTML = 'Unhappy happy';
+          this.$range.append($ruler);
+    },
+
+    // Callback function
+    onSlide: function(position, value) {
+      var $handle = this.$range.find('.rangeslider__handle__value');
+      $handle.text(this.value);
+    },
+
+    // Callback function
+    onSlideEnd: function(position, value) {}
+});
+$('#range-control2').rangeslider({
+  // Feature detection the default is `true`.
+    // Set this to `false` if you want to use
+    // the polyfill also in Browsers which support
+    // the native <input type="range"> element.
+    polyfill: false,
+
+    // Default CSS classes
+    rangeClass: 'rangeslider',
+    disabledClass: 'rangeslider--disabled',
+    horizontalClass: 'rangeslider--horizontal',
+    fillClass: 'rangeslider__fill',
+    handleClass: 'rangeslider__handle',
+
+    // Callback function
+    onInit: function() {
+      $rangeEl = this.$range;
+
+      // add value label to handle
+      var $handle = $rangeEl.find('.rangeslider__handle');
+      var handleValue = '<div class="rangeslider__handle__value">' + this.value + '</div>';
+      $handle.append(handleValue);
+
+      // get range index labels
+      var rangeLabels = this.$element.attr('labels');
+      rangeLabels = rangeLabels.split(', ');
+
+      // add labels
+      $rangeEl.append('<div class="rangeslider__labels"></div>');
+      $(rangeLabels).each(function(index, value) {
+        $rangeEl.find('.rangeslider__labels').append('<span class="rangeslider__labels__label">' + value +  '</span>');
+      })
+	  $ruler1[0].innerHTML = 'Unconcerned Concerned';
+          this.$range.append($ruler1);
+    },
+
+    // Callback function
+    onSlide: function(position, value) {
+      var $handle = this.$range.find('.rangeslider__handle__value');
+      $handle.text(this.value);
+    },
+
+    // Callback function
+    onSlideEnd: function(position, value) {}
+});
+$('#range-control3').rangeslider({
+  // Feature detection the default is `true`.
+    // Set this to `false` if you want to use
+    // the polyfill also in Browsers which support
+    // the native <input type="range"> element.
+    polyfill: false,
+
+    // Default CSS classes
+    rangeClass: 'rangeslider',
+    disabledClass: 'rangeslider--disabled',
+    horizontalClass: 'rangeslider--horizontal',
+    fillClass: 'rangeslider__fill',
+    handleClass: 'rangeslider__handle',
+
+    // Callback function
+    onInit: function() {
+      $rangeEl = this.$range;
+
+      // add value label to handle
+      var $handle = $rangeEl.find('.rangeslider__handle');
+      var handleValue = '<div class="rangeslider__handle__value">' + this.value + '</div>';
+      $handle.append(handleValue);
+
+      // get range index labels
+      var rangeLabels = this.$element.attr('labels');
+      rangeLabels = rangeLabels.split(', ');
+
+      // add labels
+      $rangeEl.append('<div class="rangeslider__labels"></div>');
+      $(rangeLabels).each(function(index, value) {
+        $rangeEl.find('.rangeslider__labels').append('<span class="rangeslider__labels__label">' + value +  '</span>');
+      })
+
+	  $ruler2[0].innerHTML = 'Unconcerned  concerned';
+          this.$range.append($ruler2);
+    },
+
+    // Callback function
+    onSlide: function(position, value) {
+      var $handle = this.$range.find('.rangeslider__handle__value');
+      $handle.text(this.value);
+    },
+
+    // Callback function
+    onSlideEnd: function(position, value) {}
+});
+
+});
+	 }, 1500);
+
+
+	// Load rangeslider.min.css
+window.setTimeout(() => {
+  loadCSS('core/css/style.css');
+}, 2500)
+	</script>
+
+
+
+
+</body>
