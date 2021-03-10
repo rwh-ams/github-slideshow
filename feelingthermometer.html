@@ -1,0 +1,101 @@
+<head>
+
+
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/rangeslider.js/2.3.0/rangeslider.min.css'>
+
+   <link rel="stylesheet" href="core/css/style.css">
+	
+	 
+</head>
+
+
+
+<h1>Feeling thermometers </h1>
+<input id="range-control1" type="range" min="0" max="100" step="10" value="0"/>
+<output class="range-control1">0</output>
+<div class="range-control1">
+  <small class="min pull-left">Min</small>
+  <small class="max pull-right">Max</small>
+</div>
+<br>
+<input id="range-control2" type="range" min="0" max="100" step="10" value="0"/>
+<output class="range-control2">0</output>
+<br>
+<input id="range-control3" type="range" min="0" max="100" step="10" value="0"/>
+<output class="range-control3">0</output>
+<br>
+<input id="range-control4" type="range" min="0" max="100" step="10" value="0"/>
+<output class="range-control4">0</output>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
+<script src='https://unpkg.com/fg-loadcss@1.3.1/src/loadCSS.js'></script>
+<script src='https://unpkg.com/fg-loadjs@1.0.0'></script> 
+<script>
+var $ruler = $('<div class="rangeslider__ruler" />');
+var $ruler1 = $('<div class="rangeslider__ruler" />');
+var $ruler2 = $('<div class="rangeslider__ruler" />');
+var $ruler3 = $('<div class="rangeslider__ruler" />');
+  var output = document.querySelectorAll('output')[0];
+  
+  //$(document).on('input', 'input[type="range"]', function(e) {
+   
+       // document.querySelector('output.'+this.id).innerHTML = e.target.value;
+//  });
+window.setTimeout(() => {
+  loadJS('https://cdnjs.cloudflare.com/ajax/libs/rangeslider.js/2.3.0/rangeslider.min.js', () => {  
+    $('#range-control1').rangeslider({
+      polyfill: false,
+	  onInit: function() {
+          $ruler[0].innerHTML = getRulerRange(this.min, this.max, this.step);
+          this.$range.prepend($ruler);
+		 
+		  }
+    })  
+ 
+   $('#range-control2').rangeslider({
+      polyfill: false,
+	  onInit: function() {
+          $ruler1[0].innerHTML = getRulerRange(this.min, this.max, this.step);
+          this.$range.prepend($ruler1);
+		 
+		  }
+    }) 
+   $('#range-control3').rangeslider({
+      polyfill: false,
+	  onInit: function() {
+          $ruler2[0].innerHTML = getRulerRange(this.min, this.max, this.step);
+          this.$range.prepend($ruler2);
+		 
+		  }
+    }) 
+   $('#range-control4').rangeslider({
+      polyfill: false,
+	  onInit: function() {
+          $ruler3[0].innerHTML = getRulerRange(this.min, this.max, this.step);
+          this.$range.prepend($ruler3);
+		 
+		  }
+    }) 	
+  });
+ }, 750);
+
+
+
+// Load rangeslider.min.css
+window.setTimeout(() => {
+  loadCSS('https://cdnjs.cloudflare.com/ajax/libs/rangeslider.js/2.3.0/rangeslider.min.css');
+}, 1500);
+
+
+function getRulerRange(min, max, step) {
+  var range = '';
+  var i = 0;
+  
+  while (i <= max) {
+    range += i + ' ';
+    i = i + step;
+  }
+  return range;
+}
+</script>

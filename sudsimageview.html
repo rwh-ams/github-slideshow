@@ -1,0 +1,41 @@
+<head>
+
+
+   <link rel="stylesheet" href="core/css/grid.css">
+
+
+</head>
+<script type="text/javascript">
+var timeLeft = 30;
+var elem = document.getElementById('countdown');
+var timerId = setInterval(countdown, 1000);
+
+function countdown() {
+    if (timeLeft == -1) {
+        clearTimeout(timerId);
+        redirect();
+    } else {
+        elem.innerHTML = timeLeft + ' seconds remaining';
+        timeLeft--;
+    }
+}
+
+function redirect() {
+   document.getElementById("clickbutton").disabled = false;
+   document.getElementById("clickbutton").click();
+}
+</script>
+<div id="instructtitle"></div>
+<div id="instructtext"></div>
+
+<div id="countdown" style="font-weight: bold"></div>
+<div>
+<input type="submit" id="clickbutton" value="Continue" disabled="disabled" onclick='loadInstructions("feelingthermsuds");'>
+</div>
+<br><br>
+ <div class="clearfix"></div>
+ <div id="gallery">
+        <div id="pic_insert"></div>
+
+ </div>
+ <div class="clearfix"></div>
